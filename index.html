@@ -1,0 +1,377 @@
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+  <title>คู่มือขนาด</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen">
+  <header class="flex items-center justify-between px-6 py-3">
+    <div class="flex items-center space-x-2">
+      <img src="venomjaw_image.png" width="60px">
+      <span class="font-semibold text-lg select-none">VENOMJAW - คู่มือขนาดสไตล์งูๆ</span>
+    </div>
+    <nav class="flex space-x-6 text-sm font-medium">
+      <a href="#" class="text-d3d3d3 hover:text-white">หน้าแรก</a>
+    </nav>
+    <button class="hamburger" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">×</a>
+    <a href="#" onclick="showSection('foot-section')">ขนาดเท้า</a>
+    <a href="#" onclick="showSection('shirt-section')" class="hidden">ขนาดเสื้อ</a>
+    <a href="#" onclick="showSection('ring-section')" class="hidden">ขนาดนิ้วสำหรับแหวน</a>
+    <a href="#" onclick="showSection('hat-section')" class="hidden">ขนาดหัวสำหรับหมวก</a>
+    <a href="#" onclick="showSection('waist-section')" class="hidden">ขนาดเอว</a>
+    <a href="#" onclick="showSection('neck-section')" class="hidden">ขนาดคอ</a>
+    <a href="#" onclick="showSection('wrist-section')" class="hidden">ขนาดข้อมือ</a>
+  </div>
+
+  <div id="main-content">
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 gap-6">
+      <section id="foot-section" class="rounded-lg shadow p-6 flex flex-col">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเท้า</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาใส่ขนาดเท้าและเพศเพื่อค้นหาขนาดรองเท้าที่เหมาะสม</p>
+        <p class="instruction-text">วัดความยาวเท้าโดยวางเท้าบนกระดาษแล้วใช้ไม้บรรทัดวัดจากส้นเท้าถึงปลายนิ้วเท้าที่ยาวที่สุด</p>
+        <form id="foot-form" class="space-y-4">
+          <div>
+            <label for="foot-size" class="block text-sm font-semibold mb-1">ขนาดเท้า (ซม.)</label>
+            <input id="foot-size" type="number" step="0.1" placeholder="เช่น 24.5" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div>
+            <label for="foot-gender" class="block text-sm font-semibold mb-1">เพศ</label>
+            <select id="foot-gender" class="w-full rounded border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-transparent" required>
+              <option value="">เลือกเพศ</option>
+              <option value="male">ชาย</option>
+              <option value="female">หญิง</option>
+            </select>
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchFootSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveFootSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="foot-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleFootTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="foot-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="foot-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">ความยาวเท้า (ซม.)</th>
+                <th class="px-3 py-2 font-semibold border-r">ชาย (EU)</th>
+                <th class="px-3 py-2 font-semibold">หญิง (EU)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">20.0 - 20.5</td><td class="px-3 py-1 border-r">33</td><td class="px-3 py-1">34</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">20.6 - 21.0</td><td class="px-3 py-1 border-r">34</td><td class="px-3 py-1">35</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">21.1 - 21.5</td><td class="px-3 py-1 border-r">34.5</td><td class="px-3 py-1">35.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">21.6 - 22.0</td><td class="px-3 py-1 border-r">35</td><td class="px-3 py-1">36</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">22.1 - 22.5</td><td class="px-3 py-1 border-r">36</td><td class="px-3 py-1">36.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">22.6 - 23.0</td><td class="px-3 py-1 border-r">36.5</td><td class="px-3 py-1">37</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">23.1 - 23.5</td><td class="px-3 py-1 border-r">37</td><td class="px-3 py-1">38</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">23.6 - 24.0</td><td class="px-3 py-1 border-r">38</td><td class="px-3 py-1">39</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">24.1 - 24.5</td><td class="px-3 py-1 border-r">39</td><td class="px-3 py-1">40</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">24.6 - 25.0</td><td class="px-3 py-1 border-r">40</td><td class="px-3 py-1">41</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">25.1 - 25.5</td><td class="px-3 py-1 border-r">40.5</td><td class="px-3 py-1">41.5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">25.6 - 26.0</td><td class="px-3 py-1 border-r">41</td><td class="px-3 py-1">42</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">26.1 - 26.5</td><td class="px-3 py-1 border-r">42</td><td class="px-3 py-1">43</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">26.6 - 27.0</td><td class="px-3 py-1 border-r">43</td><td class="px-3 py-1">44</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">27.1 - 27.5</td><td class="px-3 py-1 border-r">44</td><td class="px-3 py-1">45</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">27.6 - 28.0</td><td class="px-3 py-1 border-r">45</td><td class="px-3 py-1">46</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">28.1 - 28.5</td><td class="px-3 py-1 border-r">46</td><td class="px-3 py-1">47</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">28.6 - 29.0</td><td class="px-3 py-1 border-r">47</td><td class="px-3 py-1">48</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">29.1 - 29.5</td><td class="px-3 py-1 border-r">48</td><td class="px-3 py-1">49</td></tr>
+              <tr><td class="px-3 py-1 border-r">29.6 - 30.0</td><td class="px-3 py-1 border-r">49</td><td class="px-3 py-1">50</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="shirt-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเสื้อ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาใส่รอบอกและเพศเพื่อค้นหาขนาดเสื้อที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบอกใต้รักแร้ วัดให้แนบตัวแต่ไม่รัดแน่นจนเกินไป</p>
+        <form id="shirt-form" class="space-y-4">
+          <div>
+            <label for="chest-size" class="block text-sm font-semibold mb-1">รอบอก (ซม.)</label>
+            <input id="chest-size" type="number" step="0.1" placeholder="เช่น 90" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div>
+            <label for="shirt-gender" class="block text-sm font-semibold mb-1">เพศ</label>
+            <select id="shirt-gender" class="w-full rounded border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-transparent" required>
+              <option value="">เลือกเพศ</option>
+              <option value="male">ชาย</option>
+              <option value="female">หญิง</option>
+            </select>
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchShirtSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveShirtSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="shirt-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleShirtTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="shirt-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="shirt-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบอก (ซม.)</th>
+                <th class="px-3 py-2 font-semibold border-r">ชาย</th>
+                <th class="px-3 py-2 font-semibold">หญิง</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60 - 68</td><td class="px-3 py-1 border-r">XS</td><td class="px-3 py-1">XXS</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">69 - 76</td><td class="px-3 py-1 border-r">S</td><td class="px-3 py-1">XS</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">77 - 84</td><td class="px-3 py-1 border-r">M</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">85 - 92</td><td class="px-3 py-1 border-r">L</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">93 - 100</td><td class="px-3 py-1 border-r">XL</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">101 - 108</td><td class="px-3 py-1 border-r">XXL</td><td class="px-3 py-1">XL</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">109 - 116</td><td class="px-3 py-1 border-r">XXXL</td><td class="px-3 py-1">XXL</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">117 - 124</td><td class="px-3 py-1 border-r">4XL</td><td class="px-3 py-1">XXXL</td></tr>
+              <tr><td class="px-3 py-1 border-r">125 - 132</td><td class="px-3 py-1 border-r">5XL</td><td class="px-3 py-1">4XL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ring-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดนิ้วสำหรับแหวน</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบนิ้วเพื่อค้นหาขนาดแหวนที่เหมาะสม</p>
+        <p class="instruction-text">ใช้กระดาษตัดเป็นเส้นบางๆ พันรอบนิ้วแล้ววัดความยาวด้วยไม้บรรทัด (หน่วย มม.)</p>
+        <form id="ring-form" class="space-y-4">
+          <div>
+            <label for="ring-size" class="block text-sm font-semibold mb-1">รอบนิ้ว (มม.)</label>
+            <input id="ring-size" type="number" step="0.1" placeholder="เช่น 55.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchRingSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveRingSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="ring-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleRingTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="ring-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="ring-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบนิ้ว (มม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด (US)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">44.2 - 46.0</td><td class="px-3 py-1">3</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">46.1 - 48.0</td><td class="px-3 py-1">4</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">48.1 - 50.0</td><td class="px-3 py-1">5</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">50.1 - 52.0</td><td class="px-3 py-1">6</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">52.1 - 54.0</td><td class="px-3 py-1">7</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">54.1 - 56.0</td><td class="px-3 py-1">8</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">56.1 - 58.0</td><td class="px-3 py-1">9</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">58.1 - 60.0</td><td class="px-3 py-1">10</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60.1 - 62.0</td><td class="px-3 py-1">11</td></tr>
+              <tr><td class="px-3 py-1 border-r">62.1 - 64.0</td><td class="px-3 py-1">12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="hat-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดหัวสำหรับหมวก</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบศีรษะเพื่อค้นหาขนาดหมวกที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบศีรษะเหนือหูและคิ้ว วัดให้แนบแต่ไม่รัดแน่น</p>
+        <form id="hat-form" class="space-y-4">
+          <div>
+            <label for="head-size" class="block text-sm font-semibold mb-1">รอบศีรษะ (ซม.)</label>
+            <input id="head-size" type="number" step="0.1" placeholder="เช่น 55.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchHatSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveHatSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="hat-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleHatTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="hat-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="hat-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบศีรษะ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด (US)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">52.0 - 53.0</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">53.1 - 55.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">55.1 - 57.0</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">57.1 - 59.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">59.1 - 61.0</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="waist-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดเอว</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบเอวเพื่อค้นหาขนาดเครื่องแบบที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบเอวบริเวณสะดือ วัดให้แนบตัวแต่ไม่รัดแน่น</p>
+        <form id="waist-form" class="space-y-4">
+          <div>
+            <label for="waist-size" class="block text-sm font-semibold mb-1">รอบเอว (ซม.)</label>
+            <input id="waist-size" type="number" step="0.1" placeholder="เช่น 80.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchWaistSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveWaistSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="waist-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleWaistTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="waist-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="waist-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบเอว (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">60 - 70</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">71 - 80</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">81 - 90</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">91 - 100</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">101 - 110</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="neck-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดคอ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบคอเพื่อค้นหาขนาดเสื้อเชิ้ตที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบคอใต้ลูกกระเดือก วัดให้แนบตัวและเพิ่ม 1-2 ซม. เพื่อความสบาย</p>
+        <form id="neck-form" class="space-y-4">
+          <div>
+            <label for="neck-size" class="block text-sm font-semibold mb-1">รอบคอ (ซม.)</label>
+            <input id="neck-size" type="number" step="0.1" placeholder="เช่น 38.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchNeckSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveNeckSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="neck-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleNeckTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="neck-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="neck-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบคอ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">36.0 - 37.0</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">38.0 - 39.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">40.0 - 41.0</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">42.0 - 43.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">44.0 - 45.0</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="wrist-section" class="rounded-lg shadow p-6 flex flex-col hidden">
+        <h2 class="font-semibold mb-2 text-base">ขนาดข้อมือ</h2>
+        <p class="text-sm mb-1 leading-relaxed">กรุณาวัดรอบข้อมือเพื่อค้นหาขนาดสายนาฬิกาหรือกำไลที่เหมาะสม</p>
+        <p class="instruction-text">ใช้สายวัดรอบข้อมือเหนือกระดูกข้อมือ วัดให้แนบตัวแต่ไม่รัดแน่น</p>
+        <form id="wrist-form" class="space-y-4">
+          <div>
+            <label for="wrist-size" class="block text-sm font-semibold mb-1">รอบข้อมือ (ซม.)</label>
+            <input id="wrist-size" type="number" step="0.1" placeholder="เช่น 16.0" class="w-full rounded border px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" required />
+          </div>
+          <div class="button-container flex">
+            <button type="button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-blue-700" onclick="searchWristSize()">
+              <i class="fas fa-search"></i> ค้นหา
+            </button>
+            <button type="button" class="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded text-sm select-none hover:bg-emerald-600" onclick="saveWristSize()">
+              <i class="fas fa-save"></i> บันทึกขนาด
+            </button>
+            <button type="button" id="wrist-toggle-btn" class="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded text-sm select-none hover:bg-slate-700" onclick="toggleWristTable()">
+              <i class="fas fa-eye"></i> <span>เปิดตารางขนาด</span>
+            </button>
+          </div>
+        </form>
+        <input id="wrist-result" type="text" disabled class="mt-4 w-full rounded border h-8" />
+        <div id="wrist-table" class="overflow-x-auto mt-4 hidden">
+          <table class="w-full text-sm text-left border rounded-md">
+            <thead class="border-b">
+              <tr>
+                <th class="px-3 py-2 font-semibold border-r">รอบข้อมือ (ซม.)</th>
+                <th class="px-3 py-2 font-semibold">ขนาด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="px-3 py-1 border-r">14.0 - 15.5</td><td class="px-3 py-1">S</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">15.6 - 17.0</td><td class="px-3 py-1">M</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">17.1 - 18.5</td><td class="px-3 py-1">L</td></tr>
+              <tr class="border-b"><td class="px-3 py-1 border-r">18.6 - 20.0</td><td class="px-3 py-1">XL</td></tr>
+              <tr><td class="px-3 py-1 border-r">20.1 - 21.5</td><td class="px-3 py-1">XXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

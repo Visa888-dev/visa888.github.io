@@ -1,0 +1,174 @@
+body {
+      font-family: 'Kanit', sans-serif;
+      background-color: #1a1a1a;
+      color: #d3d3d3;
+      margin: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    header {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 2.5rem;
+    }
+
+    nav a {
+      color: #d3d3d3;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .hamburger {
+      color: #d3d3d3;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      z-index: 1002;
+      transition: color 0.2s ease;
+    }
+
+    .hamburger:hover {
+      color: #ffffff;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      right: 0;
+      background-color: #2f2f2f;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #d3d3d3;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #444444;
+    }
+
+    .sidebar .close-btn {
+      position: absolute;
+      top: 0;
+      font-size: 2rem;
+      margin-right: auto;
+    }
+
+    #main-content {
+      transition: margin-right 0.3s;
+      padding: 16px;
+      margin-top: 60px;
+      margin-right: 0;
+    }
+
+    section {
+      background-color: #333333;
+      color: #d3d3d3;
+      display: none;
+    }
+    h2 {
+      color: #d3d3d3;
+    }
+    p {
+      color: #b0b0b0;
+    }
+    label {
+      color: #d3d3d3;
+    }
+
+    table {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      border-color: #4a4a4a;
+    }
+    thead {
+      background-color: #1a1a1a;
+      color: #d3d3d3;
+    }
+    tbody tr {
+      border-color: #4a4a4a;
+    }
+    td, th {
+      border-color: #4a4a4a;
+    }
+
+    input, select {
+      background-color: #2f2f2f;
+      color: #d3d3d3;
+      border-color: #4a4a4a;
+    }
+    input::placeholder, select option {
+      color: #b0b0b0;
+    }
+    input:focus, select:focus {
+      outline: none;
+      ring: 2px solid #d3d3d3;
+      border-color: #d3d3d3;
+    }
+
+    .button-container {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .button-container button {
+      padding: 0.75rem 1rem;
+      max-width: none;
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar {
+        width: 0;
+      }
+      #main-content {
+        margin-right: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+      nav {
+        margin-right: 2.5rem;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .instruction-text {
+      color: #a0a0a0;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
